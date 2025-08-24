@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROMT VEDIO AI BY BLACK HUNTER</title>
+  <style>
+    body {font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0;}
+    .container {max-width: 800px; margin: 30px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);}
+    h1 {text-align: center; color: #333;}
+    label {display: block; margin: 15px 0 5px; font-weight: bold;}
+    input, select, textarea {width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc;}
+    button {background: #007bff; color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;}
+    button:hover {background: #0056b3;}
+    .output {background: #272822; color: #f8f8f2; padding: 15px; border-radius: 5px; white-space: pre-wrap;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>PROMPT VEDIO AI BY BLACK HUNTER OFFICIAL</h1>
 
+    <label>Unggah Foto (untuk konsistensi wajah)</label>
+    <input type="file" id="fotoInput" accept="image/*">
+
+    <label>Judul Video</label>
+    <input type="text" id="judul" placeholder="Contoh: Senyum Pagi Anak Kecil">
+
+    <label>Deskripsi Adegan</label>
+    <textarea id="deskripsi" placeholder="Contoh: Anak kecil tersenyum sambil memandang keluar jendela dengan cahaya matahari pagi"></textarea>
+
+    <label>Dialog Percakapan (jika ada)</label>
+    <textarea id="dialog" placeholder="Contoh: Anak: 'Wah, indah sekali!'"></textarea>
+
+    <label>Rasio Video</label>
+    <select id="rasio">
+      <option value="16:9">16:9 (Landscape)</option>
+      <option value="9:16">9:16 (Portrait)</option>
+      <option value="1:1">1:1 (Square)</option>
+      <option value="21:9">21:9 (Cinematic)</option>
+    </select>
+
+    <button onclick="generatePrompt()">Generate Prompt</button>
+
+    <h2>Prompt Output</h2>
+    <div class="output" id="output"></div>
+  </div>
+
+  <script>
+    function generatePrompt(){
+      const judul = document.getElementById('judul').value;
+      const deskripsi = document.getElementById('deskripsi').value;
+      const dialog = document.getElementById('dialog').value;
+      const rasio = document.getElementById('rasio').value;
+
+      const prompt = {
+  "title": "${judul}",
+  "video_model": "Veo 3",
+  "resolution": "8K",
+  "duration": "8 seconds",
+  "aspect_ratio": "${rasio}",
+  "face_consistency_image": "[UPLOAD_IMAGE]",
+  "scene_description": "${deskripsi}",
+  "dialogue": "${dialog}",
+  "technical_settings": {
+    "lighting": "soft natural light",
+    "color_style": "pastel cinematic",
+    "camera_movement": "gentle dolly-in",
+    "audio": "clear dialogue with soft ambient sound"
+  }
+};
+
+      document.getElementById('output').innerText = prompt;
+    }
+  </script>
+</body>
+</html>
